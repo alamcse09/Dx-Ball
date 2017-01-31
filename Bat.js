@@ -1,7 +1,7 @@
 var Bat = function(){
 	
 	var rect;
-	var bat;
+	var bat = this;
 	
 	this.init = function( obj ){
 	
@@ -24,6 +24,11 @@ var Bat = function(){
 	this.setDim = function( len, height ){
 		
 		bat.rect.setDim( len, height );
+	};
+	
+	this.resetPosition = function(){
+		
+		bat.setCoord( ( windowWidth - batLength ) / 2 , windowHeight - batHeight - 2 );
 	};
 	
 	this.draw = function( context ){

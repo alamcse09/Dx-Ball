@@ -10,6 +10,12 @@ var Circle = function(){
 	var signX = 1;
 	var signY = -1;
 	var circle = this;
+	var bat;
+	
+	this.setBat = function( bat ){
+			
+		circle.bat = bat;
+	};
 
 	this.init = function( obj ){
 
@@ -39,6 +45,11 @@ var Circle = function(){
 		circle.signY = -1;
 	};
 
+	this.resetPosition = function(){
+			
+		circle.setCenter( windowWidth/2 , windowHeight - batHeight - 2 - circle.radius );
+	};
+	
 	this.setCenter = function( x,y ){
 		
 		circle.prevCenterX = circle.centerX;
@@ -57,17 +68,33 @@ var Circle = function(){
 		circle.color = color;
 	};
 
-	this.moveCenter = function( ){
+	this.move = function( context, offset ){
+		
+		circle.centerX += offset;
+		
+		if( circle.centerX < batLength/2 )
+			circle.centerX = batLength/2;
+		else if( circle.centerX > ( windowWidth - batLength/2 ) )
+			circle.centerX = windowWidth - batLength/2;
+		
+		circle.setCenter( circle.centerX, circle.centerY );
+		//circle.clearPreviousCircle( context );
+		circle.draw( context );
+	};
+	
+	this.moveCenter = function( batx, baty ){
 		
 		var newX = circle.centerX + circle.signX * circle.speed;
 		var newY = circle.centerY + circle.signY * circle.speed;
+		
+		var disX = Math.abs( circle.radius + newX - batx - batLength/2 );
 		
 		if( newX + circle.radius > windowWidth || newX - circle.radius < 0){
 			
 			circle.signX *= -1;
 		}
 		
-		if( newY + circle.radius > windowHeight - batHeight -2 || newY - circle.radius < 0 ){
+		if( newY - circle.radius < 0 || ( newY + circle.radius > windowHeight - batHeight-2 && disX < circle.radius + batLength/2 ) ){
 			
 			circle.signY *= -1;	
 		}
@@ -82,7 +109,7 @@ var Circle = function(){
 
 	this.clearPreviousCircle = function( context ){
 		
-		if( circle.prevCenterX > 0 && circle.prevCenterY > 0 ){
+		if( circle.prevCenterX > 0 && circle.prevCenterY > 0 && circle.prevCenterX != circle.centerX && circle.prevCenterY != circle.centerY ){
 			
 			context.beginPath();
 			context.clearRect( circle.prevCenterX-circle.radius, circle.prevCenterY-circle.radius, 2 * circle.radius, 2 * circle.radius );

@@ -8,14 +8,21 @@ function mouseMoveHandler( event ){
 	
 	mouseTracker.setCoord( x, y );
 	
-	if( clicked )
+	if( doubleClicked || clicked )
 		bat.move( ctx, mouseTracker.getDirection() );
+	if( clicked && !doubleClicked )
+		circle.move( ctx, mouseTracker.getDirection() );
 	
 }
 
 function mouseClicked( event ){
 	
-	clicked = true;
+	if( clicked )
+		doubleClicked = true;
+	else
+		doubleClicked = false;
+	
+	clicked = !clicked;
 	mouseTracker.setCoord( event.clientX, event.clientY );
 }
 

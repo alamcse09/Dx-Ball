@@ -38,8 +38,8 @@ var CollisionDetector = function(){
 				collide = true;
 			}
 			
-			var dx = ( disX - brickLength / 2 );
-			var dy = ( disY - brickHeight / 2 );
+			var dx = Math.abs( disX - brickLength / 2 );
+			var dy = Math.abs( disY - brickHeight / 2 );
 			
 			if( dx * dx + dy * dy <= circleRadius * circleRadius ){
 				
@@ -52,6 +52,9 @@ var CollisionDetector = function(){
 				
 				collisionData[ "posx" ] = brickX;
 				collisionData[ "posy" ] = brickY;
+				
+				if( collisionDetector.bricks.length == 0 )
+					collisionData[ "finished"] = true;
 				break;
 			}
 		}

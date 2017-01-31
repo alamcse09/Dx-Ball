@@ -9,9 +9,20 @@ var Level = function(){
 		return temp;
 	};
 	
-	this.drawLevel = function( lev, context ){
+	this.isGameOver = function( curLevel ){
 		
-		var bricks = level.brickPositions[ "level" + lev ][ "bricks" ];
+		if( curLevel > Object.keys( level.brickPositions ).length ){
+			
+			return true;
+		}
+		else return false;
+	};
+	
+	this.drawLevel = function( context, bricks ){
+		
+		context.clearRect( 0, 0, windowWidth, windowHeight );
+		
+		//var bricks = level.brickPositions[ "level" + lev ][ "bricks" ];
 		
 		for( var i =0 ; i< bricks.length; i++ ){
 			
@@ -41,7 +52,6 @@ var Level = function(){
 				{ "posx": 125, "posy": 125 },
 				{ "posx": 75, "posy": 150 },
 				{ "posx": 25, "posy": 175 },
-				
 				{ "posx": 425, "posy": 25 },
 				{ "posx": 475, "posy": 50 },
 				{ "posx": 525, "posy": 75 },
@@ -69,8 +79,19 @@ var Level = function(){
 				{ "posx": 550, "posy": 275 },
 				{ "posx": 600, "posy": 300 },
 				{ "posx": 650, "posy": 325 },
-				{ "posx": 700, "posy": 350 },
-				{ "posx": 750, "posy": 375 }
+				{ "posx": 700, "posy": 350 }
+			]
+		},
+		
+		"level3" : {
+			
+			"bricks": [
+				{ "posx": 450, "posy": 225 },
+				{ "posx": 500, "posy": 250 },
+				{ "posx": 550, "posy": 275 },
+				{ "posx": 600, "posy": 300 },
+				{ "posx": 650, "posy": 325 },
+				{ "posx": 700, "posy": 350 }
 			]
 		}
 	};
