@@ -6,7 +6,6 @@ var Level = function(){
 	this.getBrickPosition = function( l ){
 		
 		var temp = level.brickPositions[ "level" + l ][ "bricks" ];
-		console.log( temp );
 		return temp;
 	};
 	

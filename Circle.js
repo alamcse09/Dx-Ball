@@ -18,6 +18,21 @@ var Circle = function(){
 		circle.prevCenterY = -1;
 	};
 
+	this.getCenterX = function(){
+		
+		return circle.centerX;
+	};
+	
+	this.getCenterY = function(){
+		
+		return circle.centerY;
+	};
+	
+	this.getRadius = function(){
+		
+		return circle.radius;
+	};
+	
 	this.setDirection = function(){
 		
 		circle.signX = 1;
@@ -52,7 +67,7 @@ var Circle = function(){
 			circle.signX *= -1;
 		}
 		
-		if( newY + circle.radius > windowHeight || newY - circle.radius < 0 ){
+		if( newY + circle.radius > windowHeight - batHeight -2 || newY - circle.radius < 0 ){
 			
 			circle.signY *= -1;	
 		}

@@ -5,4 +5,6 @@ var batHeight = 10;
 var circleRadius = 5;
 var clicked = false;
 var circleSpeed = 8;
-var stepInterval = 100;
+var stepInterval = 50;
+var brickLength = 46;
+var brickHeight = 20;
