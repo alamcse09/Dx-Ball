@@ -1,0 +1,38 @@
+<html>
+	<head>
+	</head>
+	
+	<body>
+		<canvas id = "canvas" height="400" width="800" style="border:1px solid #000000; margin-left: auto; margin-right:auto; margin-top:40px; display: block"></canvas>
+		
+		<script src="config.js"></script>
+		<script src="MouseTracker.js"></script>
+		<script src="Rectangle.js"></script>
+		<script src="Circle.js"></script>
+		<script src="Brick.js"></script>
+		<script src="Bat.js"></script>
+		<script src="Level.js"></script>
+		<script src="Game.js"> </script>
+		<script src="EventHandler.js"></script>
+		
+		<script>
+		
+			var canvas = document.getElementById("canvas");
+			
+			var ctx = canvas.getContext("2d");
+	
+			var bat = new Bat();
+	
+			bat.init( bat );
+			bat.setCoord( ( windowWidth - batLength ) / 2 , windowHeight - batHeight - 2 );
+			bat.setDim( batLength, batHeight );
+			bat.setColor( "green" ); 
+			bat.draw( ctx );
+			
+			var game = new Game();
+			
+			game.setContext( ctx );
+			game.startGame();
+		</script>
+	</body>
+</html>
