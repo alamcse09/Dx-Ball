@@ -6,6 +6,7 @@ var Game = function(){
 	var bricks;
 	var point;
 	var collisionDetector;
+	var pointViewer;
 	
 	this.setContext = function( context ){
 		
@@ -38,6 +39,10 @@ var Game = function(){
 		game.collisionDetector.setBricks( game.bricks );
 		game.collisionDetector.setCircle( game.circle );
 		
+		game.pointViewer = new PointViewer();
+		
+		game.pointViewer.setPoint( 0 );
+		game.pointViewer.draw( game.context );
 		setInterval( game.gameStep, stepInterval, ctx );
 	}
 	
